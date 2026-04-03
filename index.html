@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="변사범 - Creative Director & Brand Designer Portfolio. Plus X 공동대표, 20년+ 디자인 경력.">
+  <title>sabum@portfolio:~$ — 변사범 포트폴리오</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Scanline overlay -->
+  <div class="scanline-overlay"></div>
+
+  <!-- Boot sequence -->
+  <div id="boot-screen" class="boot-screen">
+    <div class="boot-text">
+      <p class="boot-line" data-delay="0">BIOS v2.4.1 — System Check...</p>
+      <p class="boot-line" data-delay="400">Memory Test: 16384 MB OK</p>
+      <p class="boot-line" data-delay="800">Loading kernel modules............ <span class="ok">[OK]</span></p>
+      <p class="boot-line" data-delay="1200">Initializing portfolio engine...... <span class="ok">[OK]</span></p>
+      <p class="boot-line" data-delay="1600">Mounting /home/sabum/career........ <span class="ok">[OK]</span></p>
+      <p class="boot-line" data-delay="2000">Starting design.service............ <span class="ok">[OK]</span></p>
+      <p class="boot-line" data-delay="2400"> </p>
+      <p class="boot-line boot-welcome" data-delay="2800">Welcome to SabumOS v25.04</p>
+      <p class="boot-line" data-delay="3200">Type <span class="highlight">'help'</span> for available commands.</p>
+    </div>
+  </div>
+
+  <!-- Main terminal -->
+  <div id="terminal-wrapper" class="terminal-wrapper hidden">
+    <!-- Terminal window chrome -->
+    <div class="terminal-window">
+      <div class="terminal-titlebar">
+        <div class="terminal-buttons">
+          <span class="btn-close"></span>
+          <span class="btn-minimize"></span>
+          <span class="btn-maximize"></span>
+        </div>
+        <div class="terminal-title"><span class="glitch-text" data-text="sabum@portfolio:~">sabum@portfolio:~</span></div>
+        <div class="terminal-titlebar-spacer"></div>
+      </div>
+
+      <!-- Tab bar -->
+      <div class="tab-bar">
+        <button class="tab active" data-section="about" id="tab-about">
+          <span class="tab-icon">👤</span> whoami
+        </button>
+        <button class="tab" data-section="career" id="tab-career">
+          <span class="tab-icon">💼</span> career
+        </button>
+        <button class="tab" data-section="awards" id="tab-awards">
+          <span class="tab-icon">🏆</span> awards
+        </button>
+        <button class="tab" data-section="projects" id="tab-projects">
+          <span class="tab-icon">📁</span> projects
+        </button>
+        <button class="tab" data-section="lectures" id="tab-lectures">
+          <span class="tab-icon">🎓</span> lectures
+        </button>
+        <button class="tab" data-section="contact" id="tab-contact">
+          <span class="tab-icon">📧</span> contact
+        </button>
+      </div>
+
+      <!-- Terminal body -->
+      <div class="terminal-body" id="terminal-body">
+        <!-- About Section -->
+        <section class="terminal-section active" id="section-about">
+          <div class="command-line">
+            <span class="prompt">sabum@portfolio</span><span class="prompt-separator">:</span><span class="prompt-path">~</span><span class="prompt-dollar">$</span>
+            <span class="typed-command">cat ./about.md</span>
+          </div>
+          <div class="output fade-in">
+            <pre class="ascii-art">
+ ____        _                       ____                   
+/ ___|  __ _| |__  _   _ _ __ ___   | __ ) _   _ _   _ _ __  
+\___ \ / _` | '_ \| | | | '_ ` _ \  |  _ \| | | | | | | '_ \ 
+ ___) | (_| | |_) | |_| | | | | | | | |_) | |_| | |_| | | | |
+|____/ \__,_|_.__/ \__,_|_| |_| |_| |____/ \__, |\__,_|_| |_|
+                                            |___/              
+            </pre>
+            <div class="info-block">
+              <div class="info-row">
+                <span class="info-label">NAME</span>
+                <span class="info-value glitch-hover" data-original="변사범 / Sabum Byun">변사범 / Sabum Byun</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">ROLE</span>
+                <span class="info-value glitch-hover" data-original="Creative Director & Brand Designer">Creative Director & Brand Designer</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">CURRENT</span>
+                <span class="info-value glitch-hover" data-original="플러스엑스 고문 / 스탠더스 CDO">플러스엑스 고문 / 스탠더스 CDO</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">EXP</span>
+                <span class="info-value glitch-hover" data-original="20+ years in Brand & UX/UI Design">20+ years in Brand & UX/UI Design</span>
+              </div>
+            </div>
+            <div class="stats-bar">
+              <div class="stat">
+                <span class="stat-label">AWARDS</span>
+                <div class="progress-bar"><div class="progress-fill" style="width:95%"></div></div>
+                <span class="stat-num">40+</span>
+              </div>
+              <div class="stat">
+                <span class="stat-label">PROJECTS</span>
+                <div class="progress-bar"><div class="progress-fill" style="width:98%"></div></div>
+                <span class="stat-num">100+</span>
+              </div>
+              <div class="stat">
+                <span class="stat-label">LECTURES</span>
+                <div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div>
+                <span class="stat-num">110+</span>
+              </div>
+              <div class="stat">
+                <span class="stat-label">CAREER</span>
+                <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
+                <span class="stat-num">20yr+</span>
+              </div>
+            </div>
+            <p class="description-text">
+              <span class="comment">// 브랜드 경험 디자인을 통해 기업과 사용자를 연결하는 크리에이티브 디렉터입니다.</span><br>
+              <span class="comment">// NHN(네이버)에서 미디어디자인 팀장을 역임하고,</span><br>
+              <span class="comment">// Plus X 공동대표로서 한국 최고의 브랜드 디자인 에이전시를 이끌었습니다.</span><br>
+              <span class="comment">// 현재는 AI와 디자인의 융합에 집중하고 있습니다.</span>
+            </p>
+          </div>
+        </section>
+
+        <!-- Career Section -->
+        <section class="terminal-section" id="section-career">
+          <div class="command-line">
+            <span class="prompt">sabum@portfolio</span><span class="prompt-separator">:</span><span class="prompt-path">~/career</span><span class="prompt-dollar">$</span>
+            <span class="typed-command">git log --oneline --graph</span>
+          </div>
+          <div class="output fade-in">
+            <div class="git-log">
+              <div class="git-entry">
+                <span class="git-graph">●</span>
+                <span class="git-hash">2023-now</span>
+                <span class="git-message">플러스엑스 고문 / 스탠더스 CDO</span>
+                <span class="git-tag">HEAD</span>
+              </div>
+              <div class="git-entry">
+                <span class="git-graph">│</span>
+              </div>
+              <div class="git-entry">
+                <span class="git-graph">●</span>
+                <span class="git-hash">2020-2023</span>
+                <span class="git-message">위더코어 공동대표</span>
+                <span class="git-branch">brand-consulting</span>
+              </div>
+              <div class="git-entry">
+                <span class="git-graph">│</span>
+              </div>
+              <div class="git-entry">
+                <span class="git-graph">●</span>
+                <span class="git-hash">2010-2020</span>
+                <span class="git-message">Plus X 공동대표 / Creative Director</span>
+                <span class="git-branch">creative-direction</span>
+              </div>
+              <div class="git-entry">
+                <span class="git-graph">│</span>
+              </div>
+              <div class="git-entry">
+                <span class="git-graph">●</span>
+                <span class="git-hash">2006-2010</span>
+                <span class="git-message">NHN 미디어디자인 팀장</span>
+                <span class="git-branch">nhn-naver</span>
+              </div>
+              <div class="git-entry">
+                <span class="git-graph">│</span>
+              </div>
+              <div class="git-entry">
+                <span class="git-graph">●</span>
+                <span class="git-hash">2005-2006</span>
+                <span class="git-message">디자인피버 디자이너</span>
+              </div>
+              <div class="git-entry">
+                <span class="git-graph">│</span>
+              </div>
+              <div class="git-entry">
+                <span class="git-graph">●</span>
+                <span class="git-hash">2003-2005</span>
+                <span class="git-message">디자인뉴이 창업</span>
+                <span class="git-branch">startup</span>
+              </div>
+              <div class="git-entry">
+                <span class="git-graph">│</span>
+              </div>
+              <div class="git-entry">
+                <span class="git-graph">●</span>
+                <span class="git-hash">1999-2003</span>
+                <span class="git-message">청강문화산업대학 멀티미디어디자인학과</span>
+                <span class="git-tag">origin</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Awards Section -->
+        <section class="terminal-section" id="section-awards">
+          <div class="command-line">
+            <span class="prompt">sabum@portfolio</span><span class="prompt-separator">:</span><span class="prompt-path">~/awards</span><span class="prompt-dollar">$</span>
+            <span class="typed-command">ls -la ./awards/ | sort -r</span>
+          </div>
+          <div class="output fade-in">
+            <div class="file-listing">
+              <div class="file-header">
+                <span>YEAR</span><span>AWARD</span><span>PROJECT</span>
+              </div>
+              <div class="file-row highlight-row">
+                <span class="file-year">2021</span>
+                <span class="file-award">🥇 IDEA</span>
+                <span class="file-project">Krafton Brand eXperience Design</span>
+              </div>
+              <div class="file-row">
+                <span class="file-year">2021</span>
+                <span class="file-award">🏅 Awwward</span>
+                <span class="file-project">Neker Brand Website</span>
+              </div>
+              <div class="file-row">
+                <span class="file-year">2021</span>
+                <span class="file-award">🏅 Awwward</span>
+                <span class="file-project">Deeponde Brand Website</span>
+              </div>
+              <div class="file-row highlight-row">
+                <span class="file-year">2020</span>
+                <span class="file-award">🥇 Reddot</span>
+                <span class="file-project">PlusX Official Website</span>
+              </div>
+              <div class="file-row">
+                <span class="file-year">2020</span>
+                <span class="file-award">🏅 Awwward</span>
+                <span class="file-project">PlusX Official Website</span>
+              </div>
+              <div class="file-row">
+                <span class="file-year">2020</span>
+                <span class="file-award">🏅 CSS Design Award</span>
+                <span class="file-project">PlusX Official Website</span>
+              </div>
+              <div class="file-row">
+                <span class="file-year">2020</span>
+                <span class="file-award">🥇 IF Award</span>
+                <span class="file-project">PlusX Internal Branding</span>
+              </div>
+              <div class="file-row">
+                <span class="file-year">2020</span>
+                <span class="file-award">🏅 GDA</span>
+                <span class="file-project">emart App UX/UI Design</span>
+              </div>
+              <div class="file-row">
+                <span class="file-year">2020</span>
+                <span class="file-award">🏅 GDA</span>
+                <span class="file-project">G9 App UX/UI Design</span>
+              </div>
+              <div class="file-row highlight-row">
+                <span class="file-year">2019</span>
+                <span class="file-award">🥇 IF Award</span>
+                <span class="file-project">YG Select App Design</span>
+              </div>
+              <div class="file-row">
+                <span class="file-year">2019</span>
+                <span class="file-award">🏅 GDA</span>
+                <span class="file-project">신세계백화점 App Design</span>
+              </div>
+              <div class="file-row">
+                <span class="file-year">2019</span>
+                <span class="file-award">🏅 GDA</span>
+                <span class="file-project">S.I.VILLAGE UI Design</span>
+              </div>
+              <div class="file-row highlight-row">
+                <span class="file-year">2018</span>
+                <span class="file-award">🥇 Reddot</span>
+                <span class="file-project">L.POINT App</span>
+              </div>
+              <div class="file-row">
+                <span class="file-year">2018</span>
+                <span class="file-award">🥇 IF Award</span>
+                <span class="file-project">L.POINT App</span>
+              </div>
+              <div class="file-row">
+                <span class="file-year">2016</span>
+                <span class="file-award">🥇 Reddot</span>
+                <span class="file-project">SSG PAY App</span>
+              </div>
+              <div class="file-row">
+                <span class="file-year">2016</span>
+                <span class="file-award">🥇 IF Award</span>
+                <span class="file-project">29CM App</span>
+              </div>
+              <div class="file-row highlight-row">
+                <span class="file-year">2014</span>
+                <span class="file-award">🥇 IDEA Final</span>
+                <span class="file-project">SKT B box / LAB.C Cable</span>
+              </div>
+              <div class="file-row">
+                <span class="file-year">2010</span>
+                <span class="file-award">🏆 깐느 Silver Lion</span>
+                <span class="file-project">네이버 한글캠페인</span>
+              </div>
+            </div>
+            <div class="file-summary">
+              <span class="comment">// Total: 40+ international design awards including IDEA, Reddot, IF, Awwwards, Cannes Lions</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="terminal-section" id="section-projects">
+          <div class="command-line">
+            <span class="prompt">sabum@portfolio</span><span class="prompt-separator">:</span><span class="prompt-path">~/projects</span><span class="prompt-dollar">$</span>
+            <span class="typed-command">find . -type f -name "*.project" | head -60</span>
+          </div>
+          <div class="output fade-in">
+            <div class="project-group">
+              <div class="group-header">
+                <span class="folder-icon">📂</span> ./2024-2025/ <span class="tag ai-tag">AI ERA</span>
+              </div>
+              <div class="project-items">
+                <div class="project-item"><span class="tree-line">├──</span> 로우로우 폴스미스 포스터 제작 <span class="file-ext">.brand</span></div>
+                <div class="project-item"><span class="tree-line">├──</span> MBC 교실이데아 인트로 아트웍 <span class="file-ext">.motion</span></div>
+                <div class="project-item"><span class="tree-line">└──</span> 블러블러 AI 모델에이전트 브랜드 개발 <span class="file-ext">.ai</span></div>
+              </div>
+            </div>
+            <div class="project-group">
+              <div class="group-header">
+                <span class="folder-icon">📂</span> ./2023/ <span class="tag ai-tag">AI DESIGN</span>
+              </div>
+              <div class="project-items">
+                <div class="project-item"><span class="tree-line">├──</span> 패스트캠퍼스 AI 강의 런칭 <span class="file-ext">.edu</span></div>
+                <div class="project-item"><span class="tree-line">├──</span> 동해소주 AI포스터 디자인 <span class="file-ext">.ai</span></div>
+                <div class="project-item"><span class="tree-line">├──</span> LG생활건강 아우라 라벨 디자인 <span class="file-ext">.ai</span></div>
+                <div class="project-item"><span class="tree-line">└──</span> LG생활건강 키비주얼 디자인 <span class="file-ext">.ai</span></div>
+              </div>
+            </div>
+            <div class="project-group">
+              <div class="group-header">
+                <span class="folder-icon">📂</span> ./2020-2022/ <span class="tag brand-tag">BRAND</span>
+              </div>
+              <div class="project-items">
+                <div class="project-item"><span class="tree-line">├──</span> 디폰데 코스메틱 브랜드 운영 <span class="file-ext">.brand</span></div>
+                <div class="project-item"><span class="tree-line">├──</span> 키네프 코스메틱 브랜드 운영 <span class="file-ext">.brand</span></div>
+                <div class="project-item"><span class="tree-line">├──</span> 포슐라 코스메틱 브랜드 운영 <span class="file-ext">.brand</span></div>
+                <div class="project-item"><span class="tree-line">├──</span> 삼성화재 디자인 컨설팅 <span class="file-ext">.consulting</span></div>
+                <div class="project-item"><span class="tree-line">└──</span> 픽스낫띵 패션브랜드 런칭 <span class="file-ext">.brand</span></div>
+              </div>
+            </div>
+            <div class="project-group">
+              <div class="group-header">
+                <span class="folder-icon">📂</span> ./2017-2019/ <span class="tag ux-tag">UX/UI</span>
+              </div>
+              <div class="project-items">
+                <div class="project-item"><span class="tree-line">├──</span> 이마트 APP UI/UX <span class="file-ext">.ux</span></div>
+                <div class="project-item"><span class="tree-line">├──</span> 삼성전자 신규 제품개발 UI/UX <span class="file-ext">.ux</span></div>
+                <div class="project-item"><span class="tree-line">├──</span> 제주항공 UI/UX <span class="file-ext">.ux</span></div>
+                <div class="project-item"><span class="tree-line">├──</span> 롯데 L.POINT UI/UX <span class="file-ext">.ux</span></div>
+                <div class="project-item"><span class="tree-line">├──</span> 이베이 G9 UI/UX <span class="file-ext">.ux</span></div>
+                <div class="project-item"><span class="tree-line">├──</span> 플러스엑스 웹사이트 리뉴얼 <span class="file-ext">.web</span></div>
+                <div class="project-item"><span class="tree-line">└──</span> YG E-SHOP UI/UX <span class="file-ext">.ux</span></div>
+              </div>
+            </div>
+            <div class="project-group">
+              <div class="group-header">
+                <span class="folder-icon">📂</span> ./2013-2016/ <span class="tag ux-tag">UX/UI</span>
+              </div>
+              <div class="project-items">
+                <div class="project-item"><span class="tree-line">├──</span> 29CM 모바일 앱 UI/UX <span class="file-ext">.ux</span></div>
+                <div class="project-item"><span class="tree-line">├──</span> 삼성전자 Galaxy Gear2 UI/UX <span class="file-ext">.ux</span></div>
+                <div class="project-item"><span class="tree-line">├──</span> SSG PAY 브랜드 & 서비스 앱 <span class="file-ext">.ux</span></div>
+                <div class="project-item"><span class="tree-line">├──</span> 신세계백화점 앱 UI/UX <span class="file-ext">.ux</span></div>
+                <div class="project-item"><span class="tree-line">├──</span> 쿠팡 UI/UX <span class="file-ext">.ux</span></div>
+                <div class="project-item"><span class="tree-line">└──</span> YG LIFE 웹사이트 UI/UX <span class="file-ext">.ux</span></div>
+              </div>
+            </div>
+            <div class="project-group">
+              <div class="group-header">
+                <span class="folder-icon">📂</span> ./2006-2012/ <span class="tag naver-tag">NAVER/NHN</span>
+              </div>
+              <div class="project-items">
+                <div class="project-item"><span class="tree-line">├──</span> CGV 아이패드/아이폰 앱 UI/UX <span class="file-ext">.ux</span></div>
+                <div class="project-item"><span class="tree-line">├──</span> NAVER 그린팩토리 미디어 디자인 <span class="file-ext">.media</span></div>
+                <div class="project-item"><span class="tree-line">├──</span> NAVER 한글한글 아름답게 캠페인 <span class="file-ext">.campaign</span></div>
+                <div class="project-item"><span class="tree-line">├──</span> NAVER 메인 개편 <span class="file-ext">.web</span></div>
+                <div class="project-item"><span class="tree-line">├──</span> NAVER 브랜드 사이트 <span class="file-ext">.web</span></div>
+                <div class="project-item"><span class="tree-line">└──</span> NAVER 서비스 마케팅 프로모션 총괄 <span class="file-ext">.marketing</span></div>
+              </div>
+            </div>
+            <div class="file-summary">
+              <span class="comment">// 100+ projects across Brand, UX/UI, AI Design, and Creative Direction</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Lectures Section -->
+        <section class="terminal-section" id="section-lectures">
+          <div class="command-line">
+            <span class="prompt">sabum@portfolio</span><span class="prompt-separator">:</span><span class="prompt-path">~/lectures</span><span class="prompt-dollar">$</span>
+            <span class="typed-command">cat ./speaking_engagements.log</span>
+          </div>
+          <div class="output fade-in">
+            <div class="log-section">
+              <div class="log-header"> RECENT — 2024</div>
+              <div class="log-entry">
+                <span class="log-timestamp">[2024]</span>
+                <span class="log-level info">INFO</span>
+                <span class="log-msg">기업, 대학 70여 번의 AI 강연 진행</span>
+              </div>
+              <div class="log-entry">
+                <span class="log-timestamp">[2023]</span>
+                <span class="log-level info">INFO</span>
+                <span class="log-msg">패스트캠퍼스 온라인 AI강의 런칭</span>
+              </div>
+              <div class="log-entry">
+                <span class="log-timestamp">[2013]</span>
+                <span class="log-level info">INFO</span>
+                <span class="log-msg">국민대 디자인학부 UI/UX디자인 수업 출강</span>
+              </div>
+              <div class="log-entry">
+                <span class="log-timestamp">[2010~]</span>
+                <span class="log-level info">INFO</span>
+                <span class="log-msg">대학, 기업, 단체 등 40여 차례 세미나 진행</span>
+              </div>
+            </div>
+
+            <div class="log-section">
+              <div class="log-header">🎓 UNIVERSITIES</div>
+              <div class="tag-cloud">
+                <span class="cloud-tag">홍익대</span>
+                <span class="cloud-tag">국민대</span>
+                <span class="cloud-tag">KAIST</span>
+                <span class="cloud-tag">단국대</span>
+                <span class="cloud-tag">서강대</span>
+                <span class="cloud-tag">경희대</span>
+                <span class="cloud-tag">계원대</span>
+                <span class="cloud-tag">가천대</span>
+                <span class="cloud-tag">청강문화산업대학</span>
+                <span class="cloud-tag special">Art Center College of Design (USA)</span>
+                <span class="cloud-tag special">대만디자인대학</span>
+              </div>
+            </div>
+
+            <div class="log-section">
+              <div class="log-header">🌏 GLOBAL COMPANIES</div>
+              <div class="tag-cloud">
+                <span class="cloud-tag global">Alibaba</span>
+                <span class="cloud-tag global">Tencent</span>
+                <span class="cloud-tag global">왕이(NetEase)</span>
+                <span class="cloud-tag global">HKDC</span>
+                <span class="cloud-tag global">Estée Lauder</span>
+                <span class="cloud-tag global">Ralph Lauren</span>
+              </div>
+            </div>
+
+            <div class="log-section">
+              <div class="log-header">🏢 KOREAN COMPANIES</div>
+              <div class="tag-cloud">
+                <span class="cloud-tag">삼성전자</span>
+                <span class="cloud-tag">LG전자</span>
+                <span class="cloud-tag">네이버</span>
+                <span class="cloud-tag">카카오</span>
+                <span class="cloud-tag">라인</span>
+                <span class="cloud-tag">KT</span>
+                <span class="cloud-tag">쿠팡</span>
+                <span class="cloud-tag">배달의민족</span>
+                <span class="cloud-tag">29CM</span>
+                <span class="cloud-tag">Adobe</span>
+                <span class="cloud-tag">제일기획</span>
+                <span class="cloud-tag">아모레</span>
+                <span class="cloud-tag">SM</span>
+                <span class="cloud-tag">SPC</span>
+                <span class="cloud-tag">현대홈쇼핑</span>
+                <span class="cloud-tag">한화그룹</span>
+                <span class="cloud-tag">삼성화재</span>
+                <span class="cloud-tag">여기어때</span>
+                <span class="cloud-tag">미래에셋</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="terminal-section" id="section-contact">
+          <div class="command-line">
+            <span class="prompt">sabum@portfolio</span><span class="prompt-separator">:</span><span class="prompt-path">~/contact</span><span class="prompt-dollar">$</span>
+            <span class="typed-command">cat ./contact.json</span>
+          </div>
+          <div class="output fade-in">
+            <pre class="json-block">{
+  <span class="json-key">"name"</span>: <span class="json-string">"변사범 / Sabum Byun"</span>,
+  <span class="json-key">"phone"</span>: <span class="json-string">"010-3448-8594"</span>,
+  <span class="json-key">"email"</span>: <span class="json-string">"sabum@plus-ex.com"</span>,
+  <span class="json-key">"website"</span>: <span class="json-string">"<a href="http://www.plus-ex.com" target="_blank">www.plus-ex.com</a>"</span>,
+  <span class="json-key">"blog"</span>: <span class="json-string">"<a href="http://blog.naver.com/sabum007" target="_blank">blog.naver.com/sabum007</a>"</span>,
+  <span class="json-key">"behance"</span>: <span class="json-string">"<a href="https://www.behance.net/sabum" target="_blank">behance.net/sabum</a>"</span>,
+  <span class="json-key">"status"</span>: <span class="json-string">"Open to collaboration ✨"</span>
+}</pre>
+          </div>
+        </section>
+
+        <!-- Interactive command line -->
+        <div class="interactive-line">
+          <span class="prompt">sabum@portfolio</span><span class="prompt-separator">:</span><span class="prompt-path">~</span><span class="prompt-dollar">$</span>
+          <input type="text" id="command-input" class="command-input" placeholder="Type 'help' for commands..." autocomplete="off" spellcheck="false">
+          <span class="cursor-blink">█</span>
+        </div>
+
+        <!-- Help overlay -->
+        <div id="help-overlay" class="help-overlay hidden">
+          <div class="help-content">
+            <div class="help-title">Available Commands:</div>
+            <div class="help-commands">
+              <div class="help-cmd"><span class="cmd-name">whoami</span><span class="cmd-desc">— 프로필 보기</span></div>
+              <div class="help-cmd"><span class="cmd-name">career</span><span class="cmd-desc">— 경력 사항</span></div>
+              <div class="help-cmd"><span class="cmd-name">awards</span><span class="cmd-desc">— 수상 실적</span></div>
+              <div class="help-cmd"><span class="cmd-name">projects</span><span class="cmd-desc">— 프로젝트 목록</span></div>
+              <div class="help-cmd"><span class="cmd-name">lectures</span><span class="cmd-desc">— 강의 경력</span></div>
+              <div class="help-cmd"><span class="cmd-name">contact</span><span class="cmd-desc">— 연락처 정보</span></div>
+              <div class="help-cmd"><span class="cmd-name">clear</span><span class="cmd-desc">— 화면 초기화</span></div>
+              <div class="help-cmd"><span class="cmd-name">help</span><span class="cmd-desc">— 도움말 표시</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Status bar -->
+      <div class="status-bar">
+        <div class="status-left">
+          <span class="status-item">🟢 CONNECTED</span>
+          <span class="status-item">UTF-8</span>
+          <span class="status-item">LF</span>
+        </div>
+        <div class="status-right">
+          <span class="status-item highlight lang-toggle" id="lang-toggle" style="cursor: pointer; font-weight: bold; transition: 0.2s;">[ LANG: KO ]</span>
+          <span class="status-item" id="current-time"></span>
+          <span class="status-item">sabum@portfolio</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ═══════════════════════════════════════════
+    // GLITCH ENGINE — Pixel Scramble & Effects
+    // ═══════════════════════════════════════════
+
+    const GLITCH_CHARS = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`01₩▓▒░█▄▀■□▪▫▬▲►▼◄◊○●◘◙◈⌐¬½¼¡«»░▓';
+
+    // ─── Text Scramble Class ───
+    class TextScramble {
+      constructor(el) {
+        this.el = el;
+        this.chars = GLITCH_CHARS;
+        this.frameRequest = null;
+        this.frame = 0;
+        this.queue = [];
+        this.resolve = null;
+      }
+
+      setText(newText) {
+        const oldText = this.el.textContent;
+        const length = Math.max(oldText.length, newText.length);
+        return new Promise((resolve) => {
+          this.resolve = resolve;
+          this.queue = [];
+          for (let i = 0; i < length; i++) {
+            const from = oldText[i] || '';
+            const to = newText[i] || '';
+            const start = Math.floor(Math.random() * 20);
+            const end = start + Math.floor(Math.random() * 20);
+            this.queue.push({ from, to, start, end });
+          }
+          cancelAnimationFrame(this.frameRequest);
+          this.frame = 0;
+          this.update();
+        });
+      }
+
+      update() {
+        let output = '';
+        let complete = 0;
+        for (let i = 0; i < this.queue.length; i++) {
+          let { from, to, start, end, char } = this.queue[i];
+          if (this.frame >= end) {
+            complete++;
+            output += to;
+          } else if (this.frame >= start) {
+            if (!char || Math.random() < 0.28) {
+              char = this.chars[Math.floor(Math.random() * this.chars.length)];
+              this.queue[i].char = char;
+            }
+            output += `<span class="glitch-char">${char}</span>`;
+          } else {
+            output += from;
+          }
+        }
+        this.el.innerHTML = output;
+        if (complete === this.queue.length) {
+          if (this.resolve) this.resolve();
+        } else {
+          this.frameRequest = requestAnimationFrame(() => this.update());
+          this.frame++;
+        }
+      }
+    }
+
+    // ─── Quick Glitch Burst (partial character replacement) ───
+    function glitchBurst(el, duration = 150) {
+      const original = el.dataset.original || el.textContent;
+      if (!el.dataset.original) el.dataset.original = original;
+      const text = original.split('');
+
+      const numGlitches = Math.max(1, Math.floor(text.length * 0.3));
+      const glitched = [...text];
+
+      for (let i = 0; i < numGlitches; i++) {
+        const idx = Math.floor(Math.random() * glitched.length);
+        glitched[idx] = GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)];
+      }
+
+      el.innerHTML = glitched.map((ch, i) =>
+        ch !== text[i] ? `<span class="glitch-char">${ch}</span>` : ch
+      ).join('');
+
+      setTimeout(() => {
+        el.textContent = original;
+      }, duration);
+    }
+
+    // ─── Hover Scramble Effect ───
+    function setupHoverScramble(selector) {
+      document.querySelectorAll(selector).forEach(el => {
+        const original = el.textContent;
+        el.dataset.original = original;
+
+        // Attach to parent row if applicable to trigger easier
+        const trigger = el.closest('.project-item, .git-entry, .file-row, .log-entry') || el;
+
+        trigger.addEventListener('mouseenter', () => {
+          const scrambler = new TextScramble(el);
+          scrambler.setText(el.dataset.original || original);
+        });
+      });
+    }
+
+    // ─── Periodic Random Glitch on visible elements ───
+    function startPeriodicGlitch() {
+      const targets = [
+        '.glitch-target', '.stat-num', '.git-hash', '.file-award'
+      ];
+
+      setInterval(() => {
+        const activeSection = document.querySelector('.terminal-section.active');
+        if (!activeSection) return;
+
+        const allTargets = activeSection.querySelectorAll(targets.join(','));
+        if (allTargets.length === 0) return;
+
+        // Pick 1-3 random elements to glitch
+        const count = Math.floor(Math.random() * 3) + 1;
+        for (let i = 0; i < count; i++) {
+          const el = allTargets[Math.floor(Math.random() * allTargets.length)];
+          if (el && !el.closest('a')) {
+            glitchBurst(el, 100 + Math.random() * 200);
+          }
+        }
+      }, 3000 + Math.random() * 4000);
+    }
+
+    // ─── Boot Screen Scramble ───
+    function bootScramble() {
+      const bootLines = document.querySelectorAll('.boot-line');
+      bootLines.forEach(line => {
+        const delay = parseInt(line.dataset.delay);
+        const textContent = line.textContent;
+
+        setTimeout(() => {
+          // Quick scramble before reveal
+          const chars = textContent.split('');
+          const scrambled = chars.map(() =>
+            GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)]
+          ).join('');
+
+          line.textContent = scrambled;
+          line.classList.add('visible');
+
+          // Resolve to real text
+          setTimeout(() => {
+            const scrambler = new TextScramble(line);
+            scrambler.setText(textContent).then(() => {
+              // Restore original HTML (for spans like [OK])
+              line.innerHTML = line.dataset.html || textContent;
+            });
+          }, 80);
+        }, delay);
+      });
+    }
+
+    // ─── Section Switch Scramble ───
+    function scrambleSection(section) {
+      const textEls = section.querySelectorAll(
+        '.glitch-target, .file-award'
+      );
+
+      textEls.forEach((el, i) => {
+        const original = el.textContent;
+        el.dataset.original = el.dataset.ko ? (el.getAttribute('data-' + (document.getElementById('lang-toggle').textContent.includes('EN') ? 'en' : 'ko')) || original) : original;
+
+        // Staggered scramble
+        setTimeout(() => {
+          const scrambled = original.split('').map(() =>
+            GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)]
+          ).join('');
+
+          el.textContent = scrambled;
+
+          setTimeout(() => {
+            const scrambler = new TextScramble(el);
+            scrambler.setText(el.dataset.original);
+          }, 50);
+        }, i * 30);
+      });
+    }
+
+    // ═══════════════════════════════════════════
+    // MAIN INIT
+    // ═══════════════════════════════════════════
+    document.addEventListener('DOMContentLoaded', () => {
+      const bootScreen = document.getElementById('boot-screen');
+      const terminalWrapper = document.getElementById('terminal-wrapper');
+
+      // ═══════════════════════════════════════════
+      // TRANSLATION ENGINE & AUTO-WRAPPER
+      // ═══════════════════════════════════════════
+      const dict = {
+        '변사범 / Sabum Byun': 'Sabum Byun',
+        '플러스엑스 고문 / 스탠더스 CDO': 'Plus X Advisor / STANDARD.S CDO',
+        '// 브랜드 경험 디자인을 통해 기업과 사용자를 연결하는 크리에이티브 디렉터입니다.': '// A creative director connecting companies & users through brand design.',
+        '// NHN(네이버)에서 미디어디자인 팀장을 역임하고,': '// Served as Media Design Team Lead at NHN (Naver),',
+        '// Plus X 공동대표로서 한국 최고의 브랜드 디자인 에이전시를 이끌었습니다.': '// led Plus X, Korea\'s top brand design agency, as Co-CEO.',
+        '// 현재는 AI와 디자인의 융합에 집중하고 있습니다.': '// Currently focusing on convergence of AI and design.',
+        '위더코어 공동대표': 'WithTheCore Co-CEO',
+        'Plus X 공동대표 / Creative Director': 'Plus X Co-CEO / Creative Director',
+        'NHN 미디어디자인 팀장': 'NHN Media Design Team Lead',
+        '디자인피버 디자이너': 'DesignFever Designer',
+        '디자인뉴이 창업': 'Founded DesignNeu',
+        '청강문화산업대학 멀티미디어디자인학과': 'Chungkang College',
+        '로우로우 폴스미스 포스터 제작': 'RAWROW Paul Smith Poster',
+        'MBC 교실이데아 인트로 아트웍': 'MBC Classroom Idea Artwork',
+        '블러블러 AI 모델에이전트 브랜드 개발': 'BlurBlur AI Agent Brand',
+        '패스트캠퍼스 AI 강의 런칭': 'FastCampus AI Course',
+        '동해소주 AI포스터 디자인': 'Donghae Soju AI Poster',
+        'LG생활건강 아우라 라벨 디자인': 'LG H&H Aura Label',
+        'LG생활건강 키비주얼 디자인': 'LG H&H Key Visual',
+        '디폰데 코스메틱 브랜드 운영': 'Deeponde Cosmetic Brand',
+        '키네프 코스메틱 브랜드 운영': 'Kineff Cosmetic Brand',
+        '포슐라 코스메틱 브랜드 운영': 'Fossula Cosmetic Brand',
+        '삼성화재 디자인 컨설팅': 'Samsung Fire & Marine Consulting',
+        '픽스낫띵 패션브랜드 런칭': 'FixNothing Fashion Brand',
+        '이마트 APP UI/UX': 'emart App UI/UX',
+        '삼성전자 신규 제품개발 UI/UX': 'Samsung Electronics UI/UX',
+        '제주항공 UI/UX': 'Jeju Air UI/UX',
+        '롯데 L.POINT UI/UX': 'Lotte L.POINT UI/UX',
+        '이베이 G9 UI/UX': 'eBay G9 UI/UX',
+        '플러스엑스 웹사이트 리뉴얼': 'Plus X Website Renewal',
+        'YG E-SHOP UI/UX': 'YG E-SHOP UI/UX',
+        '29CM 모바일 앱 UI/UX': '29CM Mobile App UI/UX',
+        '삼성전자 Galaxy Gear2 UI/UX': 'Samsung Galaxy Gear2 UI/UX',
+        'SSG PAY 브랜드 & 서비스 앱': 'SSG PAY Brand App',
+        '신세계백화점 앱 UI/UX': 'Shinsegae Dept. Store App',
+        '쿠팡 UI/UX': 'Coupang UI/UX',
+        'YG LIFE 웹사이트 UI/UX': 'YG LIFE Website UI/UX',
+        'CGV 아이패드/아이폰 앱 UI/UX': 'CGV iPad/iPhone App UI/UX',
+        'NAVER 그린팩토리 미디어 디자인': 'NAVER Green Factory Media',
+        'NAVER 한글한글 아름답게 캠페인': 'NAVER Hangeul Campaign',
+        'NAVER 메인 개편': 'NAVER Main Page Redesign',
+        'NAVER 브랜드 사이트': 'NAVER Brand Site',
+        'NAVER 서비스 마케팅 프로모션 총괄': 'NAVER Service Marketing Director',
+        '기업, 대학 70여 번의 AI 강연 진행': 'Over 70 AI lectures conducted',
+        '패스트캠퍼스 온라인 AI강의 런칭': 'Launched FastCampus AI Course',
+        '국민대 디자인학부 UI/UX디자인 수업 출강': 'UI/UX Lecturer at Kookmin Univ.',
+        '대학, 기업, 단체 등 40여 차례 세미나 진행': 'Over 40 seminars delivered',
+        '홍익대': 'Hongik Univ.', '국민대': 'Kookmin Univ.', '단국대': 'Dankook Univ.', '서강대': 'Sogang Univ.',
+        '경희대': 'Kyunghee Univ.', '계원대': 'Kaywon Univ.', '가천대': 'Gachon Univ.', '청강문화산업대학': 'Chungkang College', '대만디자인대학': 'Taiwan Design Univ.',
+        '삼성전자': 'Samsung', 'LG전자': 'LG Electronics', '네이버': 'NAVER', '카카오': 'Kakao', '라인': 'LINE',
+        '쿠팡': 'Coupang', '배달의민족': 'Baemin', '제일기획': 'Cheil', '아모레': 'Amorepacific', '현대홈쇼핑': 'Hyundai Home Shopping',
+        '한화그룹': 'Hanwha', '삼성화재': 'Samsung Fire', '여기어때': 'Yeogi Eottae', '미래에셋': 'Mirae Asset',
+        '신세계백화점 App Design': 'Shinsegae Dept Store App',
+        '// Total: 40+ international design awards including IDEA, Reddot, IF, Awwwards, Cannes Lions': '// Total: 40+ intl design awards (IDEA, Reddot, IF, Awwwards, Cannes Lions)',
+        '// 100+ projects across Brand, UX/UI, AI Design, and Creative Direction': '// 100+ projects across Brand, UX/UI, AI Design, and Creative Direction'
+      };
+
+      const selectors = ['.info-value', '.git-message', '.project-item', '.cloud-tag', '.log-msg', '.file-project', '.comment'];
+      document.querySelectorAll(selectors.join(', ')).forEach(el => {
+        const childNodes = Array.from(el.childNodes);
+        const textNode = childNodes.find(n => n.nodeType === 3 && n.textContent.trim().length > 1);
+        
+        if (textNode) {
+          const rawText = textNode.textContent.trim();
+          const span = document.createElement('span');
+          span.className = 'glitch-target lang-txt';
+          span.style.color = 'inherit';
+          span.dataset.ko = rawText;
+          span.dataset.en = dict[rawText] || rawText;
+          span.dataset.original = rawText;
+          span.textContent = rawText;
+          
+          textNode.replaceWith(span);
+        }
+      });
+
+      // Status Bar Language Toggle Setup
+      const langBtn = document.getElementById('lang-toggle');
+      let currentLang = 'ko';
+      if (langBtn) {
+        langBtn.addEventListener('click', () => {
+          currentLang = currentLang === 'ko' ? 'en' : 'ko';
+          langBtn.textContent = currentLang === 'ko' ? '[ LANG: KO ]' : '[ LANG: EN ]';
+          glitchBurst(langBtn, 300);
+
+          document.querySelectorAll('.lang-txt').forEach(el => {
+            const newText = el.getAttribute(`data-${currentLang}`);
+            if (newText) {
+              if (el.dataset.original) el.dataset.original = newText;
+              const scrambler = new TextScramble(el);
+              scrambler.setText(newText);
+            }
+          });
+        });
+      }
+
+      // Store original HTML for boot lines (to preserve <span> tags)
+      document.querySelectorAll('.boot-line').forEach(line => {
+        line.dataset.html = line.innerHTML;
+      });
+
+      // ─── Boot Sequence with Scramble ───
+      bootScramble();
+
+      // Transition to terminal
+      setTimeout(() => {
+        bootScreen.classList.add('fade-out');
+        setTimeout(() => {
+          bootScreen.classList.add('hidden');
+          terminalWrapper.classList.remove('hidden');
+          terminalWrapper.classList.add('fade-in-up');
+          document.getElementById('command-input').focus();
+
+          // Initial section scramble
+          const aboutSection = document.getElementById('section-about');
+          if (aboutSection) scrambleSection(aboutSection);
+
+          // Start periodic glitch engine
+          startPeriodicGlitch();
+        }, 600);
+      }, 4200);
+
+      // ─── Tab Navigation ───
+      const tabs = document.querySelectorAll('.tab');
+      const sections = document.querySelectorAll('.terminal-section');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const target = tab.dataset.section;
+          switchSection(target);
+        });
+      });
+
+      function switchSection(target) {
+        tabs.forEach(t => t.classList.remove('active'));
+        sections.forEach(s => {
+          s.classList.remove('active');
+          s.classList.remove('fade-in');
+        });
+
+        const activeTab = document.querySelector(`[data-section="${target}"]`);
+        const activeSection = document.getElementById(`section-${target}`);
+
+        if (activeTab) activeTab.classList.add('active');
+        if (activeSection) {
+          activeSection.classList.add('active');
+          requestAnimationFrame(() => {
+            activeSection.querySelector('.output')?.classList.add('fade-in');
+          });
+
+          // Scramble text on section switch
+          scrambleSection(activeSection);
+        }
+
+        document.getElementById('help-overlay').classList.add('hidden');
+      }
+
+      // ─── Setup Hover Scramble on key elements ───
+      setupHoverScramble('.glitch-target');
+
+      // ─── Interactive Command Line ───
+      const commandInput = document.getElementById('command-input');
+      const helpOverlay = document.getElementById('help-overlay');
+
+      const commandMap = {
+        'whoami': 'about',
+        'about': 'about',
+        'career': 'career',
+        'awards': 'awards',
+        'projects': 'projects',
+        'lectures': 'lectures',
+        'contact': 'contact',
+      };
+
+      commandInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const cmd = commandInput.value.trim().toLowerCase();
+          commandInput.value = '';
+
+          if (cmd === 'help') {
+            helpOverlay.classList.toggle('hidden');
+            return;
+          }
+
+          if (cmd === 'clear') {
+            helpOverlay.classList.add('hidden');
+            switchSection('about');
+            return;
+          }
+
+          if (commandMap[cmd]) {
+            helpOverlay.classList.add('hidden');
+            switchSection(commandMap[cmd]);
+          } else if (cmd !== '') {
+            helpOverlay.classList.remove('hidden');
+            const helpTitle = helpOverlay.querySelector('.help-title');
+            const originalTitle = 'Available Commands:';
+            helpTitle.textContent = `Command not found: '${cmd}'. Available commands:`;
+
+            // Glitch the error message
+            glitchBurst(helpTitle, 300);
+
+            setTimeout(() => {
+              helpTitle.textContent = originalTitle;
+            }, 3000);
+          }
+        }
+      });
+
+      // Click anywhere to focus input
+      document.querySelector('.terminal-body')?.addEventListener('click', (e) => {
+        if (!e.target.closest('a') && !e.target.closest('.tab')) {
+          commandInput.focus();
+        }
+      });
+
+      // ─── Status Bar Clock ───
+      function updateClock() {
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString('ko-KR', { hour12: false });
+        const el = document.getElementById('current-time');
+        if (el) el.textContent = timeStr;
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
+
+      // ─── Typing effect for command lines ───
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('typed');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.typed-command').forEach(el => {
+        observer.observe(el);
+      });
+
+      // ─── Periodic title bar glitch ───
+      setInterval(() => {
+        const title = document.querySelector('.terminal-title');
+        if (title) glitchBurst(title, 120);
+      }, 8000 + Math.random() * 5000);
+
+      // ─── Glitch stat numbers periodically ───
+      setInterval(() => {
+        const statNums = document.querySelectorAll('.stat-num');
+        const pick = statNums[Math.floor(Math.random() * statNums.length)];
+        if (pick) glitchBurst(pick, 150);
+      }, 5000);
+    });
+  </script>
+</body>
+</html>

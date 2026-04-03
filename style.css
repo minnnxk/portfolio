@@ -1,0 +1,1402 @@
+/* ═══════════════════════════════════════════
+   SABUM TERMINAL PORTFOLIO — Style System
+   Blue Background / White Text / Terminal UI
+   ═══════════════════════════════════════════ */
+
+/* ─── Reset & Base ─── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-primary: #001B3A;
+  --bg-secondary: #002451;
+  --bg-tertiary: #003068;
+  --bg-panel: rgba(0, 36, 81, 0.85);
+  --bg-hover: rgba(255, 255, 255, 0.06);
+
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255, 255, 255, 0.75);
+  --text-muted: rgba(255, 255, 255, 0.45);
+
+  --accent-cyan: #00D9FF;
+  --accent-green: #00FF88;
+  --accent-yellow: #FFD600;
+  --accent-orange: #FF8A00;
+  --accent-pink: #FF3D8A;
+  --accent-purple: #B388FF;
+
+  --border-color: rgba(255, 255, 255, 0.12);
+  --border-glow: rgba(0, 217, 255, 0.3);
+
+  --font-mono: 'Fira Code', 'JetBrains Mono', 'Menlo', 'Consolas', monospace;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+html {
+  font-size: 15px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-mono);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  /* Retro Pixel Arrow Cursor (Cyan) */
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%2300D9FF' stroke='%23001B3A' stroke-width='1.5' d='M5 3l0 17 4-4 3 6 2-1-3-6 5 0z'/%3E%3C/svg%3E"), auto;
+}
+
+/* Custom Pointers for interactive elements */
+a, button, .tab {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23FF3D8A' stroke='%23001B3A' stroke-width='1.5' d='M9 1l0 7-4 0 7 11 7-11-4 0 0-7z'/%3E%3C/svg%3E"), pointer !important;
+}
+
+/* Custom Text I-beam for inputs and terminal */
+input, .terminal-body {
+  cursor: text;
+}
+
+.lang-toggle:hover {
+  text-shadow: 0 0 8px rgba(255, 61, 138, 0.8);
+  color: var(--accent-pink);
+}
+
+/* ─── Scanline CRT Effect ─── */
+.scanline-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.03) 0px,
+    rgba(0, 0, 0, 0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* ─── Boot Screen ─── */
+.boot-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: opacity 0.6s ease;
+}
+
+.boot-screen.hidden {
+  display: none;
+}
+
+.boot-screen.fade-out {
+  opacity: 0;
+}
+
+.boot-text {
+  max-width: 600px;
+  padding: 2rem;
+}
+
+.boot-line {
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all 0.4s ease;
+  font-size: 0.85rem;
+  line-height: 2;
+  color: var(--text-secondary);
+}
+
+.boot-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.boot-line .ok {
+  color: var(--accent-green);
+  font-weight: 600;
+}
+
+.boot-line .highlight {
+  color: var(--accent-cyan);
+}
+
+.boot-welcome {
+  font-size: 1.2rem;
+  color: var(--accent-cyan);
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+/* ─── Hidden Utility ─── */
+.hidden {
+  display: none !important;
+}
+
+/* ─── Terminal Wrapper ─── */
+.terminal-wrapper {
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(0, 100, 200, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(0, 217, 255, 0.05) 0%, transparent 50%),
+    var(--bg-primary);
+}
+
+.terminal-wrapper.fade-in-up {
+  animation: fadeInUp 0.8s ease both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Terminal Window ─── */
+.terminal-window {
+  width: 100%;
+  max-width: 960px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow:
+    0 0 0 1px rgba(0, 217, 255, 0.08),
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 120px rgba(0, 100, 200, 0.1);
+  overflow: hidden;
+}
+
+/* ─── Titlebar ─── */
+.terminal-titlebar {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-color);
+  gap: 12px;
+}
+
+.terminal-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.terminal-buttons span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.btn-close { background: #FF5F57; }
+.btn-minimize { background: #FFBD2E; }
+.btn-maximize { background: #28CA41; }
+
+.terminal-title {
+  flex: 1;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+.terminal-titlebar-spacer {
+  width: 52px;
+}
+
+/* ─── Tab Bar ─── */
+.tab-bar {
+  display: flex;
+  background: rgba(0, 20, 45, 0.6);
+  border-bottom: 1px solid var(--border-color);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tab-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.tab {
+  flex: 1;
+  min-width: max-content;
+  padding: 10px 16px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+}
+
+.tab:hover {
+  color: var(--text-secondary);
+  background: var(--bg-hover);
+}
+
+.tab.active {
+  color: var(--accent-cyan);
+  border-bottom-color: var(--accent-cyan);
+  background: rgba(0, 217, 255, 0.06);
+}
+
+.tab-icon {
+  font-size: 0.85rem;
+}
+
+/* ─── Terminal Body ─── */
+.terminal-body {
+  padding: 24px 28px;
+  min-height: 500px;
+  max-height: 72vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-cyan) transparent;
+}
+
+.terminal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+  background: rgba(0, 217, 255, 0.3);
+  border-radius: 3px;
+}
+
+/* ─── Sections ─── */
+.terminal-section {
+  display: none;
+}
+
+.terminal-section.active {
+  display: block;
+}
+
+/* ─── Command Line ─── */
+.command-line {
+  margin-bottom: 16px;
+  font-size: 0.85rem;
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.prompt {
+  color: var(--accent-green);
+  font-weight: 600;
+}
+
+.prompt-separator {
+  color: var(--text-primary);
+}
+
+.prompt-path {
+  color: var(--accent-cyan);
+  font-weight: 500;
+}
+
+.prompt-dollar {
+  color: var(--text-primary);
+  margin-right: 8px;
+}
+
+.typed-command {
+  color: var(--text-primary);
+  position: relative;
+}
+
+.typed-command.typed {
+  animation: typeIn 0.6s steps(30) both;
+}
+
+@keyframes typeIn {
+  from { width: 0; overflow: hidden; display: inline-block; }
+  to { width: auto; overflow: hidden; display: inline-block; }
+}
+
+/* ─── Output ─── */
+.output {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.5s ease;
+}
+
+.output.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.terminal-section.active .output {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── ASCII Art ─── */
+.ascii-art {
+  color: var(--accent-cyan);
+  font-size: 0.55rem;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  overflow-x: auto;
+  text-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+  white-space: pre;
+}
+
+/* ─── Info Block ─── */
+.info-block {
+  background: rgba(0, 217, 255, 0.04);
+  border: 1px solid rgba(0, 217, 255, 0.15);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+
+.info-row {
+  display: flex;
+  align-items: baseline;
+  padding: 4px 0;
+  gap: 16px;
+}
+
+.info-label {
+  color: var(--accent-yellow);
+  font-size: 0.75rem;
+  font-weight: 600;
+  min-width: 80px;
+  letter-spacing: 1px;
+}
+
+.info-value {
+  color: var(--text-primary);
+  font-size: 0.85rem;
+}
+
+/* ─── Stats Bar ─── */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.stat-label {
+  color: var(--text-muted);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  min-width: 65px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-green));
+  border-radius: 2px;
+  animation: fillBar 1.5s ease both;
+  animation-delay: 0.5s;
+  transform-origin: left;
+}
+
+@keyframes fillBar {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.stat-num {
+  color: var(--accent-cyan);
+  font-size: 0.75rem;
+  font-weight: 700;
+  min-width: 35px;
+  text-align: right;
+}
+
+/* ─── Description / Comments ─── */
+.description-text {
+  font-size: 0.8rem;
+  line-height: 2;
+}
+
+.comment {
+  color: rgba(0, 217, 255, 0.5);
+  font-style: italic;
+  font-size: 0.78rem;
+}
+
+/* ─── Git Log (Career) ─── */
+.git-log {
+  padding-left: 8px;
+}
+
+.git-entry {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 2px 0;
+  font-size: 0.82rem;
+  transition: background 0.2s ease;
+}
+
+.git-entry:hover {
+  background: var(--bg-hover);
+  border-radius: var(--radius-sm);
+}
+
+.git-graph {
+  color: var(--accent-green);
+  font-weight: 700;
+  font-size: 1rem;
+  min-width: 16px;
+  text-align: center;
+}
+
+.git-hash {
+  color: var(--accent-yellow);
+  font-weight: 600;
+  min-width: 85px;
+  font-size: 0.78rem;
+}
+
+.git-message {
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.git-tag {
+  background: var(--accent-cyan);
+  color: var(--bg-primary);
+  padding: 1px 8px;
+  border-radius: 3px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.git-branch {
+  color: var(--accent-orange);
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.git-branch::before {
+  content: '⎇ ';
+}
+
+/* ─── File Listing (Awards) ─── */
+.file-listing {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.file-header {
+  display: grid;
+  grid-template-columns: 60px 160px 1fr;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--bg-tertiary);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 1.5px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.file-row {
+  display: grid;
+  grid-template-columns: 60px 160px 1fr;
+  gap: 12px;
+  padding: 8px 16px;
+  font-size: 0.78rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: all 0.2s ease;
+}
+
+.file-row:last-child {
+  border-bottom: none;
+}
+
+.file-row:hover {
+  background: var(--bg-hover);
+}
+
+.file-row.highlight-row {
+  background: rgba(0, 217, 255, 0.04);
+}
+
+.file-year {
+  color: var(--accent-yellow);
+  font-weight: 600;
+}
+
+.file-award {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.file-project {
+  color: var(--text-secondary);
+}
+
+.file-summary {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* ─── Project Groups ─── */
+.project-group {
+  margin-bottom: 20px;
+}
+
+.group-header {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-sm);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.folder-icon {
+  font-size: 1rem;
+}
+
+.tag {
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-left: auto;
+}
+
+.ai-tag {
+  background: rgba(179, 136, 255, 0.2);
+  color: var(--accent-purple);
+  border: 1px solid rgba(179, 136, 255, 0.3);
+}
+
+.brand-tag {
+  background: rgba(255, 61, 138, 0.15);
+  color: var(--accent-pink);
+  border: 1px solid rgba(255, 61, 138, 0.3);
+}
+
+.ux-tag {
+  background: rgba(0, 217, 255, 0.12);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(0, 217, 255, 0.3);
+}
+
+.naver-tag {
+  background: rgba(0, 255, 136, 0.12);
+  color: var(--accent-green);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+}
+
+.project-items {
+  padding-left: 24px;
+}
+
+.project-item {
+  padding: 3px 8px;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+  border-radius: var(--radius-sm);
+}
+
+.project-item:hover {
+  color: var(--text-primary);
+  background: var(--bg-hover);
+}
+
+.tree-line {
+  color: var(--text-muted);
+  margin-right: 4px;
+}
+
+.file-ext {
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  opacity: 0.6;
+}
+
+/* ─── Log Entries (Lectures) ─── */
+.log-section {
+  margin-bottom: 20px;
+}
+
+.log-header {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  letter-spacing: 1px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 8px;
+}
+
+.log-entry {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px;
+  font-size: 0.78rem;
+  border-radius: var(--radius-sm);
+  transition: background 0.2s ease;
+}
+
+.log-entry:hover {
+  background: var(--bg-hover);
+}
+
+.log-timestamp {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  min-width: 65px;
+}
+
+.log-level {
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.log-level.info {
+  background: rgba(0, 217, 255, 0.15);
+  color: var(--accent-cyan);
+}
+
+.log-msg {
+  color: var(--text-primary);
+}
+
+/* ─── Tag Cloud ─── */
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 0;
+}
+
+.cloud-tag {
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  transition: all 0.25s ease;
+  cursor: default;
+}
+
+.cloud-tag:hover {
+  background: rgba(0, 217, 255, 0.1);
+  border-color: rgba(0, 217, 255, 0.3);
+  color: var(--accent-cyan);
+  transform: translateY(-1px);
+}
+
+.cloud-tag.special {
+  border-color: var(--accent-yellow);
+  color: var(--accent-yellow);
+  background: rgba(255, 214, 0, 0.06);
+}
+
+.cloud-tag.global {
+  border-color: var(--accent-purple);
+  color: var(--accent-purple);
+  background: rgba(179, 136, 255, 0.06);
+}
+
+/* ─── JSON Block (Contact) ─── */
+.json-block {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  font-size: 0.82rem;
+  line-height: 2;
+  white-space: pre-wrap;
+}
+
+.json-key {
+  color: var(--accent-cyan);
+}
+
+.json-string {
+  color: var(--accent-green);
+}
+
+.json-block a {
+  color: var(--accent-green);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(0, 255, 136, 0.3);
+  transition: all 0.2s ease;
+}
+
+.json-block a:hover {
+  color: var(--accent-cyan);
+  border-bottom-color: var(--accent-cyan);
+  text-shadow: 0 0 8px rgba(0, 217, 255, 0.4);
+}
+
+/* ─── Interactive Command Line ─── */
+.interactive-line {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.85rem;
+}
+
+.command-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  caret-color: var(--accent-cyan);
+}
+
+.command-input::placeholder {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.cursor-blink {
+  color: var(--accent-cyan);
+  animation: blink 1s steps(2) infinite;
+  font-size: 0.85rem;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ─── Help Overlay ─── */
+.help-overlay {
+  margin-top: 16px;
+  padding: 16px 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.help-title {
+  color: var(--accent-yellow);
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.help-commands {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 4px;
+}
+
+.help-cmd {
+  display: flex;
+  gap: 8px;
+  padding: 3px 0;
+  font-size: 0.78rem;
+}
+
+.cmd-name {
+  color: var(--accent-cyan);
+  font-weight: 600;
+  min-width: 80px;
+}
+
+.cmd-desc {
+  color: var(--text-muted);
+}
+
+/* ─── Status Bar ─── */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 16px;
+  background: var(--bg-tertiary);
+  border-top: 1px solid var(--border-color);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+.status-left,
+.status-right {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.status-item {
+  letter-spacing: 0.5px;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  .terminal-wrapper {
+    padding: 0.5rem;
+  }
+
+  .terminal-window {
+    border-radius: var(--radius-md);
+  }
+
+  .terminal-body {
+    padding: 16px;
+    max-height: 78vh;
+  }
+
+  .ascii-art {
+    font-size: 0.38rem;
+  }
+
+  .stats-bar {
+    grid-template-columns: 1fr;
+  }
+
+  .file-header,
+  .file-row {
+    grid-template-columns: 50px 120px 1fr;
+    gap: 8px;
+    font-size: 0.7rem;
+    padding: 6px 10px;
+  }
+
+  .tab {
+    padding: 8px 10px;
+    font-size: 0.65rem;
+  }
+
+  .tab-icon {
+    display: none;
+  }
+
+  .info-row {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .info-label {
+    min-width: unset;
+  }
+
+  .help-commands {
+    grid-template-columns: 1fr;
+  }
+
+  .git-entry {
+    font-size: 0.72rem;
+    flex-wrap: wrap;
+  }
+
+  .git-hash {
+    min-width: 75px;
+    font-size: 0.7rem;
+  }
+
+  .git-branch {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ascii-art {
+    display: none;
+  }
+
+  .terminal-body {
+    padding: 12px;
+  }
+
+  .file-header,
+  .file-row {
+    grid-template-columns: 45px 1fr;
+  }
+
+  .file-project {
+    display: none;
+  }
+
+  .status-bar {
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 12px;
+  }
+}
+
+/* ─── Selection ─── */
+::selection {
+  background: rgba(0, 217, 255, 0.3);
+  color: var(--text-primary);
+}
+
+/* ─── Focus styles ─── */
+.command-input:focus {
+  outline: none;
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: -2px;
+}
+
+/* ═══════════════════════════════════════════
+   PIXEL GLITCH EFFECTS
+   ═══════════════════════════════════════════ */
+
+/* ─── RGB Split Glitch on ASCII Art ─── */
+.ascii-art {
+  position: relative;
+  animation: asciiFlicker 8s infinite;
+}
+
+.ascii-art::before,
+.ascii-art::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  white-space: pre;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.ascii-art::before {
+  color: var(--accent-pink);
+  animation: glitchLeft 3s infinite linear alternate-reverse;
+  clip-path: inset(0 0 65% 0);
+  opacity: 0.7;
+}
+
+.ascii-art::after {
+  color: var(--accent-cyan);
+  animation: glitchRight 2.5s infinite linear alternate-reverse;
+  clip-path: inset(60% 0 0 0);
+  opacity: 0.7;
+}
+
+@keyframes glitchLeft {
+  0%, 90%, 100% { transform: translate(0); }
+  91% { transform: translate(-3px, 1px); }
+  92% { transform: translate(2px, -1px); }
+  93% { transform: translate(-1px, 2px); }
+  94% { transform: translate(3px, 0); }
+  95% { transform: translate(0); }
+  96% { transform: translate(-2px, -2px); }
+  97% { transform: translate(1px, 1px); }
+}
+
+@keyframes glitchRight {
+  0%, 88%, 100% { transform: translate(0); }
+  89% { transform: translate(3px, -1px); }
+  90% { transform: translate(-2px, 2px); }
+  91% { transform: translate(1px, -2px); }
+  92% { transform: translate(-3px, 1px); }
+  93% { transform: translate(2px, 0); }
+  94% { transform: translate(0); }
+}
+
+@keyframes asciiFlicker {
+  0%, 97%, 100% { opacity: 1; }
+  97.5% { opacity: 0.85; }
+  98% { opacity: 1; }
+  98.5% { opacity: 0.9; }
+  99% { opacity: 1; }
+}
+
+/* ─── Glitch Text Effect (.glitch-text) ─── */
+.glitch-text {
+  position: relative;
+  display: inline-block;
+  animation: textGlitch 6s infinite;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.glitch-text::before {
+  color: var(--accent-pink);
+  animation: glitchClip1 4s infinite linear;
+  clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+  transform: translate(-2px, -1px);
+  opacity: 0.8;
+}
+
+.glitch-text::after {
+  color: var(--accent-cyan);
+  animation: glitchClip2 3.5s infinite linear;
+  clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%);
+  transform: translate(2px, 1px);
+  opacity: 0.8;
+}
+
+@keyframes glitchClip1 {
+  0%, 85%, 100% {
+    clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+    transform: translate(0);
+  }
+  86% {
+    clip-path: polygon(0 15%, 100% 15%, 100% 25%, 0 25%);
+    transform: translate(-4px, 0);
+  }
+  88% {
+    clip-path: polygon(0 50%, 100% 50%, 100% 60%, 0 60%);
+    transform: translate(3px, 0);
+  }
+  90% {
+    clip-path: polygon(0 70%, 100% 70%, 100% 80%, 0 80%);
+    transform: translate(-2px, 0);
+  }
+  92% {
+    clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+    transform: translate(0);
+  }
+}
+
+@keyframes glitchClip2 {
+  0%, 82%, 100% {
+    clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%);
+    transform: translate(0);
+  }
+  83% {
+    clip-path: polygon(0 40%, 100% 40%, 100% 55%, 0 55%);
+    transform: translate(3px, 0);
+  }
+  85% {
+    clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%);
+    transform: translate(-5px, 0);
+  }
+  87% {
+    clip-path: polygon(0 75%, 100% 75%, 100% 90%, 0 90%);
+    transform: translate(2px, 0);
+  }
+  89% {
+    clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%);
+    transform: translate(0);
+  }
+}
+
+@keyframes textGlitch {
+  0%, 95%, 100% { transform: translate(0); text-shadow: none; }
+  95.5% {
+    transform: translate(2px, 0);
+    text-shadow: -2px 0 var(--accent-pink), 2px 0 var(--accent-cyan);
+  }
+  96% {
+    transform: translate(-1px, 1px);
+    text-shadow: 1px 0 var(--accent-pink), -1px 0 var(--accent-cyan);
+  }
+  96.5% {
+    transform: translate(1px, -1px);
+    text-shadow: -1px 0 var(--accent-pink), 1px 0 var(--accent-cyan);
+  }
+  97% { transform: translate(0); text-shadow: none; }
+}
+
+/* ─── Hover Glitch on interactive elements ─── */
+.git-message:hover,
+.info-value:hover,
+.project-item:hover,
+.log-msg:hover {
+  animation: hoverGlitch 0.3s steps(3) both;
+}
+
+@keyframes hoverGlitch {
+  0% { text-shadow: 2px 0 var(--accent-pink), -2px 0 var(--accent-cyan); transform: translate(1px, 0); }
+  25% { text-shadow: -2px 0 var(--accent-pink), 2px 0 var(--accent-cyan); transform: translate(-1px, 0); }
+  50% { text-shadow: 1px 0 var(--accent-pink), -1px 0 var(--accent-cyan); transform: translate(0, 1px); }
+  75% { text-shadow: -1px 0 var(--accent-pink), 1px 0 var(--accent-cyan); transform: translate(0, -1px); }
+  100% { text-shadow: none; transform: translate(0); }
+}
+
+/* ─── Boot Screen Glitch ─── */
+.boot-welcome {
+  animation: bootGlitch 0.5s steps(4) 2.8s both, neonPulse 2s ease infinite 3.3s;
+}
+
+@keyframes bootGlitch {
+  0% { opacity: 0; transform: translate(0); text-shadow: none; }
+  10% { opacity: 1; transform: translate(-5px, 2px); text-shadow: 3px 0 var(--accent-pink), -3px 0 var(--accent-cyan); }
+  20% { transform: translate(4px, -1px); text-shadow: -3px 0 var(--accent-pink), 3px 0 var(--accent-cyan); }
+  30% { transform: translate(-3px, 0); text-shadow: 2px 0 var(--accent-pink), -2px 0 var(--accent-cyan); }
+  40% { transform: translate(2px, 1px); text-shadow: -2px 0 var(--accent-pink), 2px 0 var(--accent-cyan); }
+  50% { transform: translate(-1px, -1px); text-shadow: 1px 0 var(--accent-pink); }
+  100% { opacity: 1; transform: translate(0); text-shadow: 0 0 10px rgba(0, 217, 255, 0.5); }
+}
+
+@keyframes neonPulse {
+  0%, 100% { text-shadow: 0 0 10px rgba(0, 217, 255, 0.5), 0 0 20px rgba(0, 217, 255, 0.2); }
+  50% { text-shadow: 0 0 20px rgba(0, 217, 255, 0.8), 0 0 40px rgba(0, 217, 255, 0.4), 0 0 60px rgba(0, 217, 255, 0.1); }
+}
+
+/* ─── Terminal Titlebar Glitch ─── */
+.terminal-title {
+  animation: titleFlicker 10s infinite;
+}
+
+@keyframes titleFlicker {
+  0%, 92%, 100% { opacity: 1; transform: translate(0); }
+  92.5% { opacity: 0.6; transform: translate(1px, 0); letter-spacing: 2px; }
+  93% { opacity: 1; transform: translate(-1px, 0); letter-spacing: 0.5px; }
+  93.5% { opacity: 0.8; transform: translate(0); }
+  94% { opacity: 1; }
+}
+
+/* ─── Tab Glitch on Active ─── */
+.tab.active {
+  animation: tabGlitch 8s infinite;
+}
+
+@keyframes tabGlitch {
+  0%, 93%, 100% { text-shadow: none; }
+  93.5% { text-shadow: 2px 0 var(--accent-pink), -2px 0 rgba(0, 255, 136, 0.5); }
+  94% { text-shadow: -1px 0 var(--accent-pink), 1px 0 rgba(0, 255, 136, 0.5); }
+  94.5% { text-shadow: none; }
+}
+
+/* ─── Pixel Noise on Scanline ─── */
+.scanline-overlay::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.015;
+  animation: pixelNoise 0.15s steps(5) infinite;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='1' height='1' fill='%23fff' x='0' y='0'/%3E%3Crect width='1' height='1' fill='%23fff' x='3' y='2'/%3E%3Crect width='1' height='1' fill='%23fff' x='1' y='3'/%3E%3C/svg%3E");
+  background-size: 4px 4px;
+}
+
+@keyframes pixelNoise {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-1px, 1px); }
+  40% { transform: translate(1px, -1px); }
+  60% { transform: translate(-1px, -1px); }
+  80% { transform: translate(1px, 1px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ─── Glitch Scramble characters ─── */
+.glitch-char {
+  display: inline-block;
+  animation: charGlitch 0.1s steps(2) both;
+  color: var(--accent-cyan);
+  text-shadow: 0 0 4px var(--accent-cyan);
+}
+
+@keyframes charGlitch {
+  0% { opacity: 0.5; transform: translateY(-2px); }
+  50% { opacity: 1; transform: translateY(1px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Section transition glitch ─── */
+.terminal-section.active .output {
+  animation: sectionGlitchIn 0.4s steps(6) both;
+}
+
+@keyframes sectionGlitchIn {
+  0% { opacity: 0; transform: translate(-3px, 2px); clip-path: inset(0 100% 0 0); }
+  16% { opacity: 0.6; transform: translate(2px, -1px); clip-path: inset(0 60% 0 0); }
+  33% { opacity: 0.8; transform: translate(-1px, 0); clip-path: inset(0 30% 0 0); }
+  50% { opacity: 0.9; transform: translate(1px, 1px); clip-path: inset(0 15% 0 0); }
+  66% { opacity: 1; transform: translate(0, -1px); clip-path: inset(0 5% 0 0); }
+  83% { transform: translate(0); clip-path: inset(0 0 0 0); }
+  100% { opacity: 1; transform: translate(0); clip-path: inset(0 0 0 0); }
+}
+
+/* ─── Horizontal glitch line that travels ─── */
+.terminal-body::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-cyan), rgba(0, 217, 255, 0.6), transparent);
+  opacity: 0;
+  pointer-events: none;
+  animation: scanGlitch 12s infinite;
+  z-index: 10;
+}
+
+.terminal-body {
+  position: relative;
+}
+
+@keyframes scanGlitch {
+  0%, 89%, 100% { opacity: 0; top: 0; }
+  90% { opacity: 0.6; top: 0; }
+  95% { opacity: 0.4; top: 100%; }
+  96% { opacity: 0; top: 100%; }
+}
+
+/* ─── Prompt Glitch ─── */
+.prompt {
+  animation: promptGlitch 7s infinite;
+}
+
+@keyframes promptGlitch {
+  0%, 90%, 100% { text-shadow: none; letter-spacing: normal; }
+  91% { text-shadow: 2px 0 var(--accent-pink); letter-spacing: 1px; }
+  92% { text-shadow: -1px 0 var(--accent-cyan); letter-spacing: 0; }
+  93% { text-shadow: none; letter-spacing: normal; }
+}
+
+/* ─── Status bar pixel glitch ─── */
+.status-bar {
+  animation: statusGlitch 15s infinite;
+}
+
+@keyframes statusGlitch {
+  0%, 96%, 100% {
+    background: var(--bg-tertiary);
+  }
+  96.5% {
+    background: linear-gradient(90deg, var(--bg-tertiary) 30%, rgba(0, 217, 255, 0.1) 30.5%, var(--bg-tertiary) 31%);
+  }
+  97% {
+    background: linear-gradient(90deg, var(--bg-tertiary) 60%, rgba(255, 61, 138, 0.08) 60.5%, var(--bg-tertiary) 61%);
+  }
+  97.5% {
+    background: var(--bg-tertiary);
+  }
+}
+
+/* ─── Progress bar pixel step fill ─── */
+.progress-fill {
+  animation: fillBar 1.5s steps(20) both;
+  animation-delay: 0.5s;
+  image-rendering: pixelated;
+}
+
+/* ─── Random pixel blocks ─── */
+.terminal-window::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0;
+  animation: blockGlitch 10s infinite;
+  background: linear-gradient(
+    0deg,
+    transparent 0%,
+    transparent 48%,
+    rgba(0, 217, 255, 0.03) 48.5%,
+    rgba(0, 217, 255, 0.03) 51.5%,
+    transparent 52%,
+    transparent 100%
+  );
+}
+
+.terminal-window {
+  position: relative;
+}
+
+@keyframes blockGlitch {
+  0%, 94%, 100% { opacity: 0; }
+  95% { opacity: 1; transform: translateY(-20px); }
+  96% { opacity: 1; transform: translateY(30px); }
+  97% { opacity: 0; }
+}
